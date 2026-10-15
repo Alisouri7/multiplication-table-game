@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بازی آموزش ضرب</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
+</head>
+
+<body>
+  <div id="game-root">
+    <!-- Canvas سه‌بعدی -->
+    <canvas id="c3d"></canvas>
+
+    <!-- HUD بالای صفحه -->
+    <div id="hud" class="hidden">
+      <div class="hud-card" id="score-card">
+        <span class="hud-label">امتیاز</span>
+        <span class="hud-value" id="score-value">۰</span>
+      </div>
+      <div class="hud-card" id="best-card">
+        <span class="hud-label">رکورد</span>
+        <span class="hud-value" id="best-value">۰</span>
+      </div>
+      <button id="mute-btn" title="صدا">🔊</button>
+    </div>
+
+    <!-- نوار زمان پایین -->
+    <div id="timer-bar-wrap" class="hidden">
+      <div id="timer-bar"></div>
+    </div>
+
+    <!-- منوی شروع -->
+    <div id="start-screen" class="overlay-screen">
+      <div class="menu-card">
+        <div class="game-title-wrap">
+          <h1 class="game-title">جدول ضرب</h1>
+        </div>
+        <p class="game-sub">ضرب درست رو بزن! از 0×0 تا 12×12</p>
+        <div class="level-buttons">
+          <button class="level-btn easy" data-level="easy">
+            <span class="lvl-icon">🌱</span>
+            <span class="lvl-name">سطح آسان</span>
+            <span class="lvl-desc">۱۰ ثانیه برای هر ضرب</span>
+          </button>
+          <button class="level-btn hard" data-level="hard">
+            <span class="lvl-icon">🔥</span>
+            <span class="lvl-name">سطح سخت</span>
+            <span class="lvl-desc">۵ ثانیه برای هر ضرب</span>
+          </button>
+        </div>
+        <p class="best-hint" id="start-best-hint">رکوردت رو بشکن!</p>
+      </div>
+    </div>
+
+    <!-- صفحه پایان بازی -->
+    <div id="gameover-screen" class="overlay-screen hidden">
+      <div class="menu-card">
+        <span class="go-emoji" id="go-emoji">😞</span>
+        <h1 class="game-title" id="go-title">باختی!</h1>
+        <p id="go-reason"></p>
+        <div class="go-stats">
+          <div class="go-stat">
+            <span class="go-stat-label">امتیاز این دست</span>
+            <span class="go-stat-value" id="go-score">۰</span>
+          </div>
+          <div class="go-stat">
+            <span class="go-stat-label">رکورد</span>
+            <span class="go-stat-value" id="go-best">۰</span>
+          </div>
+        </div>
+        <button id="again-btn" class="big-play-btn">بازی مجدد 🔄</button>
+        <button id="menu-btn" class="menu-link">منوی اصلی</button>
+      </div>
+    </div>
+
+    <!-- پیام کوتاه وسط صفحه (درست/غلط) -->
+    <div id="flash-msg" class="hidden"></div>
+  </div>
+
+  <script src="js/three.min.js"></script>
+  <script src="game.js"></script>
+</body>
+
+</html>
